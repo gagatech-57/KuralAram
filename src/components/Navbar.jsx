@@ -191,9 +191,10 @@ export default function Navbar({
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setFontSizeMultiplier((prev) => Math.max(0.85, prev - 0.1))}
-                        className="px-2 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] active:scale-90 font-bold transition-all"
+                        className="px-2.5 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] active:scale-90 font-bold font-tamil-serif transition-all"
+                        title="Font Size Decrease"
                       >
-                        A-
+                        அ-
                       </button>
 
                       <input
@@ -208,9 +209,10 @@ export default function Navbar({
 
                       <button
                         onClick={() => setFontSizeMultiplier((prev) => Math.min(1.4, prev + 0.1))}
-                        className="px-2 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] active:scale-90 font-bold transition-all"
+                        className="px-2.5 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] active:scale-90 font-bold font-tamil-serif transition-all"
+                        title="Font Size Increase"
                       >
-                        A+
+                        அ+
                       </button>
                     </div>
                   </div>
