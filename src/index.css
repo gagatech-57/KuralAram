@@ -139,8 +139,8 @@ body {
   right: 12px;
 }
 
-/* Antique Buttons */
-.btn-antique, .btn-pill {
+/* Antique & Pill Buttons */
+.btn-antique {
   background: linear-gradient(135deg, var(--bg-card), var(--bg-surface));
   border: 1.5px solid var(--bg-card-border);
   color: var(--text-main);
@@ -157,17 +157,46 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.btn-antique:hover, .btn-pill:hover {
+.btn-antique:hover {
   background: var(--brand-accent);
   color: #FFFFFF;
   border-color: var(--brand-accent);
   transform: translateY(-1px);
 }
 
-.btn-antique-active, .btn-pill-active {
+.btn-antique-active {
   background: var(--brand-primary) !important;
   color: #FFFFFF !important;
   border-color: var(--brand-primary) !important;
+}
+
+.btn-pill {
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  font-family: var(--font-tamil-serif);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-pill:hover {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+}
+
+.btn-pill-active {
+  background-color: var(--brand-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(139, 30, 15, 0.25);
 }
 
 /* Slim Scrollbar */
