@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { 
   BookOpen, Search, Bookmark, Award, Feather, 
-  Menu, Sun, Moon, Maximize, Minimize, Eye, 
-  Type, SlidersHorizontal, ChevronRight, X
+  Menu, Maximize, Eye, SlidersHorizontal, X
 } from 'lucide-react';
 
 export default function Navbar({ 
@@ -10,8 +9,8 @@ export default function Navbar({
   setActiveTab, 
   sidebarOpen, 
   setSidebarOpen, 
-  darkMode, 
-  setDarkMode, 
+  theme, 
+  setTheme, 
   fontSizeMultiplier, 
   setFontSizeMultiplier, 
   isZenMode, 
@@ -31,18 +30,18 @@ export default function Navbar({
   };
 
   return (
-    <header className="sticky top-0 z-40 glass-header border-b border-[var(--border-color)] transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 glass-header transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Left Side: Sidebar Toggle & Brand Title */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-surface)] transition-colors"
+              className="touch-target p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
               title={sidebarOpen ? "Collapse Chapters Sidebar" : "Open Chapters Sidebar"}
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5 text-[var(--brand-primary)]" />
             </button>
 
             <div 
@@ -50,12 +49,12 @@ export default function Navbar({
               className="flex items-center gap-2 cursor-pointer group"
             >
               <span className="w-8 h-8 rounded-xl bg-[var(--brand-primary)] text-white font-bold font-tamil-serif flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition-transform">
-                கு
+                திரு
               </span>
               <div>
                 <h1 className="text-base sm:text-lg font-bold font-tamil-serif text-[var(--text-main)] tracking-tight flex items-center gap-1.5">
                   திருக்குறள்
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[var(--brand-accent-light)] text-[var(--brand-accent)] font-inter">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--brand-primary-light)] text-[var(--brand-primary)] font-tamil-serif border border-[var(--bg-card-border)]">
                     1330
                   </span>
                 </h1>
@@ -63,12 +62,13 @@ export default function Navbar({
             </div>
           </div>
 
-          {/* Center: Modern Pill Buttons (Desktop) */}
-          <nav className="hidden md:flex items-center gap-1 bg-[var(--bg-surface)] p-1 rounded-full border border-[var(--border-color)]">
+          {/* Center: Ancient Navigation Pills (Desktop) */}
+          <nav className="hidden md:flex items-center gap-1.5 bg-[var(--bg-surface)] p-1 rounded-xl border border-[var(--bg-card-border)]">
             <button
               onClick={() => setActiveTab('explore')}
               className={`btn-pill ${activeTab === 'explore' ? 'btn-pill-active' : ''}`}
             >
+              <BookOpen className="w-3.5 h-3.5" />
               <span>அதிகாரங்கள்</span>
             </button>
 
@@ -76,7 +76,8 @@ export default function Navbar({
               onClick={() => setActiveTab('palmleaf')}
               className={`btn-pill ${activeTab === 'palmleaf' ? 'btn-pill-active' : ''}`}
             >
-              <span>வாசிப்பு</span>
+              <Feather className="w-3.5 h-3.5" />
+              <span>ஓலைச்சுவடி</span>
             </button>
 
             <button
@@ -109,43 +110,67 @@ export default function Navbar({
             </button>
           </nav>
 
-          {/* Right Side: Quick Settings & Customization */}
+          {/* Right Side: Theme Dropdown & Settings */}
           <div className="flex items-center gap-1.5">
             
-            {/* Reading Mode (Zen Mode) Button */}
+            {/* Theme Dropdown */}
+            <div className="relative group">
+              <button
+                className="touch-target p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors border border-[var(--bg-card-border)] bg-[var(--bg-card)] flex items-center gap-1 text-xs font-bold font-tamil-serif"
+                title="Change Ancient Theme"
+              >
+                <span>🎨 கருப்பொருள்</span>
+              </button>
+
+              <div className="absolute right-0 top-full mt-2 w-48 bg-[var(--bg-card)] border-2 border-[var(--bg-card-border)] rounded-xl shadow-2xl p-2 hidden group-hover:block z-50 animate-fade-in font-tamil-serif">
+                <p className="text-[11px] font-bold text-[var(--text-muted)] px-2 py-1 border-b border-[var(--bg-card-border)] mb-1">
+                  மரபு நிறங்கள் (Themes)
+                </p>
+                <button
+                  onClick={() => setTheme('theme-parchment')}
+                  className={`w-full text-left px-3 py-1.5 text-xs rounded-lg flex items-center justify-between ${theme === 'theme-parchment' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'hover:bg-[var(--bg-surface)]'}`}
+                >
+                  <span>📜 பொன்னேடு (Parchment)</span>
+                </button>
+                <button
+                  onClick={() => setTheme('theme-palmleaf')}
+                  className={`w-full text-left px-3 py-1.5 text-xs rounded-lg flex items-center justify-between ${theme === 'theme-palmleaf' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'hover:bg-[var(--bg-surface)]'}`}
+                >
+                  <span>🌿 ஏடு (Palm Leaf)</span>
+                </button>
+                <button
+                  onClick={() => setTheme('theme-darktemple')}
+                  className={`w-full text-left px-3 py-1.5 text-xs rounded-lg flex items-center justify-between ${theme === 'theme-darktemple' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'hover:bg-[var(--bg-surface)]'}`}
+                >
+                  <span>🏛️ கோவில் காரிருள் (Dark)</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Zen Mode Button */}
             <button
               onClick={() => setIsZenMode(!isZenMode)}
-              className={`p-2 rounded-xl transition-all ${isZenMode ? 'bg-[var(--brand-primary)] text-white' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)]'}`}
+              className={`touch-target p-2 rounded-xl transition-all border border-[var(--bg-card-border)] ${isZenMode ? 'bg-[var(--brand-primary)] text-white' : 'text-[var(--text-muted)] bg-[var(--bg-card)] hover:text-[var(--text-main)]'}`}
               title="Zen Focus Reading Mode"
             >
               <Eye className="w-4 h-4" />
             </button>
 
-            {/* Dark Mode Toggle Button */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-xl text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)] transition-colors"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
-            </button>
-
-            {/* Typography & Settings Popover Toggle */}
+            {/* Settings Popover */}
             <div className="relative">
               <button
                 onClick={() => setShowSettings(!showSettings)}
-                className="p-2 rounded-xl text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)] transition-colors"
-                title="Font size & settings"
+                className="touch-target p-2 rounded-xl text-[var(--text-muted)] border border-[var(--bg-card-border)] bg-[var(--bg-card)] hover:text-[var(--text-main)] transition-colors"
+                title="Font size & options"
               >
                 <SlidersHorizontal className="w-4 h-4" />
               </button>
 
-              {/* Settings Dropdown */}
               {showSettings && (
-                <div className="absolute right-0 top-full mt-2 w-64 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl shadow-2xl p-4 space-y-4 z-50 animate-fade-in">
-                  <div className="flex items-center justify-between border-b border-[var(--border-color)] pb-2">
-                    <span className="text-xs font-bold font-inter text-[var(--text-main)]">
-                      வாசிப்பு அமைப்புகள் (Reading Settings)
+                <div className="absolute right-0 top-full mt-2 w-64 bg-[var(--bg-card)] border-2 border-[var(--bg-card-border)] rounded-2xl shadow-2xl p-4 space-y-4 z-50 animate-fade-in font-tamil-serif">
+                  <div className="flex items-center justify-between border-b border-[var(--bg-card-border)] pb-2">
+                    <span className="text-xs font-bold text-[var(--text-main)]">
+                      வாசிப்பு அமைப்புகள்
                     </span>
                     <button 
                       onClick={() => setShowSettings(false)}
@@ -157,15 +182,15 @@ export default function Navbar({
 
                   {/* Font Size Slider */}
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs text-[var(--text-muted)] font-inter">
-                      <span className="flex items-center gap-1"><Type className="w-3.5 h-3.5" /> எழுத்து அளவு</span>
+                    <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
+                      <span>எழுத்து அளவு</span>
                       <span className="font-bold text-[var(--brand-primary)]">{Math.round(fontSizeMultiplier * 100)}%</span>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setFontSizeMultiplier((prev) => Math.max(0.85, prev - 0.1))}
-                        className="px-2 py-1 text-xs rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] hover:bg-[var(--border-color)] font-bold"
+                        className="px-2 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] font-bold"
                       >
                         A-
                       </button>
@@ -182,7 +207,7 @@ export default function Navbar({
 
                       <button
                         onClick={() => setFontSizeMultiplier((prev) => Math.min(1.4, prev + 0.1))}
-                        className="px-2 py-1 text-xs rounded-lg border border-[var(--border-color)] bg-[var(--bg-surface)] hover:bg-[var(--border-color)] font-bold"
+                        className="px-2 py-1 text-xs rounded-lg border border-[var(--bg-card-border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] font-bold"
                       >
                         A+
                       </button>
@@ -190,11 +215,11 @@ export default function Navbar({
                   </div>
 
                   {/* Fullscreen Toggle */}
-                  <div className="pt-2 border-t border-[var(--border-color)] flex items-center justify-between">
-                    <span className="text-xs font-medium text-[var(--text-muted)]">முழுத்திரை (Fullscreen)</span>
+                  <div className="pt-2 border-t border-[var(--bg-card-border)] flex items-center justify-between text-xs">
+                    <span className="font-medium text-[var(--text-muted)]">முழுத்திரை</span>
                     <button
                       onClick={toggleFullscreen}
-                      className="p-1.5 rounded-lg bg-[var(--bg-surface)] hover:bg-[var(--border-color)] text-[var(--text-main)]"
+                      className="p-1.5 rounded-lg bg-[var(--bg-surface)] hover:bg-[var(--bg-card-border)] text-[var(--text-main)]"
                     >
                       <Maximize className="w-3.5 h-3.5" />
                     </button>
@@ -208,34 +233,34 @@ export default function Navbar({
         </div>
 
         {/* Mobile Navigation Pills */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-[var(--border-color)] text-xs gap-1">
+        <div className="flex md:hidden items-center justify-around py-2 border-t border-[var(--bg-card-border)] text-xs gap-1 font-tamil-serif overflow-x-auto">
           <button
             onClick={() => setActiveTab('explore')}
-            className={`px-3 py-1.5 rounded-full ${activeTab === 'explore' ? 'bg-[var(--brand-primary)] text-white font-medium' : 'text-[var(--text-muted)]'}`}
+            className={`px-3 py-1.5 rounded-xl ${activeTab === 'explore' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)]'}`}
           >
             அதிகாரங்கள்
           </button>
           <button
             onClick={() => setActiveTab('palmleaf')}
-            className={`px-3 py-1.5 rounded-full ${activeTab === 'palmleaf' ? 'bg-[var(--brand-primary)] text-white font-medium' : 'text-[var(--text-muted)]'}`}
+            className={`px-3 py-1.5 rounded-xl ${activeTab === 'palmleaf' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)]'}`}
           >
-            வாசிப்பு
+            ஓலைச்சுவடி
           </button>
           <button
             onClick={() => setActiveTab('search')}
-            className={`px-3 py-1.5 rounded-full ${activeTab === 'search' ? 'bg-[var(--brand-primary)] text-white font-medium' : 'text-[var(--text-muted)]'}`}
+            className={`px-3 py-1.5 rounded-xl ${activeTab === 'search' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)]'}`}
           >
             தேடல்
           </button>
           <button
             onClick={() => setActiveTab('quiz')}
-            className={`px-3 py-1.5 rounded-full ${activeTab === 'quiz' ? 'bg-[var(--brand-primary)] text-white font-medium' : 'text-[var(--text-muted)]'}`}
+            className={`px-3 py-1.5 rounded-xl ${activeTab === 'quiz' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)]'}`}
           >
             புதிர்
           </button>
           <button
             onClick={() => setActiveTab('bookmarks')}
-            className={`px-3 py-1.5 rounded-full ${activeTab === 'bookmarks' ? 'bg-[var(--brand-primary)] text-white font-medium' : 'text-[var(--text-muted)]'}`}
+            className={`px-3 py-1.5 rounded-xl ${activeTab === 'bookmarks' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)]'}`}
           >
             சுவடிகள் ({bookmarkCount})
           </button>
