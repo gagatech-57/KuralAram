@@ -29,10 +29,15 @@ export default function Footer() {
 
         </div>
 
-        <div className="pt-4 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[var(--text-muted)]">
+        {/* Developer Credit Line */}
+        <div className="pt-4 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-muted)]">
           <p>© {new Date().getFullYear()} திருக்குறள் 1330 • Premium Digital Reader</p>
-          <div className="flex items-center gap-1">
-            <span>100% Correct Dataset & Explanations</span>
+          
+          <div className="flex items-center gap-1.5 font-medium px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--bg-card-border)]/50">
+            <span>Developed with</span>
+            <Heart className="w-3.5 h-3.5 text-rose-600 fill-current animate-pulse" />
+            <span>by</span>
+            <span className="font-bold text-[var(--brand-primary)]">GuNaseKaR غوناسكار</span>
           </div>
         </div>
 
