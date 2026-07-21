@@ -244,10 +244,39 @@ body {
   animation: scaleClick 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Slim Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Header & Navigation Animations */
+@keyframes headerSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-header-down {
+  animation: headerSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.animate-badge-pulse {
+  animation: badgePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(8deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.hover-logo-rotate:hover {
+  animation: logoRotate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::-webkit-scrollbar-track {
