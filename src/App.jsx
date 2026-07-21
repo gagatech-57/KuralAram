@@ -90,7 +90,7 @@ export default function App() {
       {isZenMode && (
         <button
           onClick={() => setIsZenMode(false)}
-          className="fixed top-4 right-4 z-50 px-4 py-2 rounded-full bg-[var(--brand-primary)] text-white text-xs font-bold font-tamil-serif shadow-xl hover:opacity-90 transition-opacity"
+          className="fixed top-4 right-4 z-50 px-4 py-2 rounded-full bg-[var(--brand-primary)] text-white text-xs font-bold font-tamil-serif shadow-xl hover:opacity-90 active:scale-95 transition-all"
         >
           ✕ Zen வாசிப்பை விலக்குக
         </button>
@@ -110,51 +110,53 @@ export default function App() {
           />
         )}
 
-        {/* Central Reading Content Area */}
+        {/* Central Reading Content Area with Smooth Slide Animation */}
         <div className="flex-1 min-w-0">
           <main className="pb-16">
-            {activeTab === 'explore' && (
-              <ChapterBrowser
-                dataset={thirukuralData}
-                selectedChapterId={selectedChapterId}
-                onSelectChapter={setSelectedChapterId}
-                bookmarks={bookmarks}
-                onToggleBookmark={toggleBookmark}
-                fontSizeMultiplier={fontSizeMultiplier}
-              />
-            )}
+            <div key={activeTab} className="animate-slide-up">
+              {activeTab === 'explore' && (
+                <ChapterBrowser
+                  dataset={thirukuralData}
+                  selectedChapterId={selectedChapterId}
+                  onSelectChapter={setSelectedChapterId}
+                  bookmarks={bookmarks}
+                  onToggleBookmark={toggleBookmark}
+                  fontSizeMultiplier={fontSizeMultiplier}
+                />
+              )}
 
-            {activeTab === 'palmleaf' && (
-              <PalmLeafReader
-                dataset={thirukuralData}
-                bookmarks={bookmarks}
-                onToggleBookmark={toggleBookmark}
-                fontSizeMultiplier={fontSizeMultiplier}
-              />
-            )}
+              {activeTab === 'palmleaf' && (
+                <PalmLeafReader
+                  dataset={thirukuralData}
+                  bookmarks={bookmarks}
+                  onToggleBookmark={toggleBookmark}
+                  fontSizeMultiplier={fontSizeMultiplier}
+                />
+              )}
 
-            {activeTab === 'search' && (
-              <SearchView
-                dataset={thirukuralData}
-                bookmarks={bookmarks}
-                onToggleBookmark={toggleBookmark}
-                fontSizeMultiplier={fontSizeMultiplier}
-              />
-            )}
+              {activeTab === 'search' && (
+                <SearchView
+                  dataset={thirukuralData}
+                  bookmarks={bookmarks}
+                  onToggleBookmark={toggleBookmark}
+                  fontSizeMultiplier={fontSizeMultiplier}
+                />
+              )}
 
-            {activeTab === 'quiz' && (
-              <ThirukkuralQuiz dataset={thirukuralData} />
-            )}
+              {activeTab === 'quiz' && (
+                <ThirukkuralQuiz dataset={thirukuralData} />
+              )}
 
-            {activeTab === 'bookmarks' && (
-              <BookmarksView
-                dataset={thirukuralData}
-                bookmarks={bookmarks}
-                onToggleBookmark={toggleBookmark}
-                setActiveTab={setActiveTab}
-                fontSizeMultiplier={fontSizeMultiplier}
-              />
-            )}
+              {activeTab === 'bookmarks' && (
+                <BookmarksView
+                  dataset={thirukuralData}
+                  bookmarks={bookmarks}
+                  onToggleBookmark={toggleBookmark}
+                  setActiveTab={setActiveTab}
+                  fontSizeMultiplier={fontSizeMultiplier}
+                />
+              )}
+            </div>
           </main>
 
           {!isZenMode && <Footer />}

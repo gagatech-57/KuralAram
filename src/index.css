@@ -97,13 +97,18 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Touch Target Utility */
-.touch-target {
-  min-height: 44px;
-  min-width: 44px;
+/* Touch Target Utility & Interactive Smooth Click Feedback */
+.touch-target, button, .interactive-click {
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.touch-target:active, button:active, .interactive-click:active {
+  transform: scale(0.95);
 }
 
 /* Palm Leaf Manuscript (ஓலைச்சுவடி) Card Styling */
@@ -113,8 +118,13 @@ body {
   border-radius: 16px;
   position: relative;
   box-shadow: 0 10px 30px -5px rgba(45, 25, 10, 0.25);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -8px rgba(45, 25, 10, 0.35);
 }
 
 .oolai-chuvadi::before, .oolai-chuvadi::after {
@@ -139,7 +149,7 @@ body {
   right: 12px;
 }
 
-/* Antique & Pill Buttons */
+/* Antique & Pill Buttons with Smooth Animations */
 .btn-antique {
   background: linear-gradient(135deg, var(--bg-card), var(--bg-surface));
   border: 1.5px solid var(--bg-card-border);
@@ -153,7 +163,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -162,6 +172,10 @@ body {
   color: #FFFFFF;
   border-color: var(--brand-accent);
   transform: translateY(-1px);
+}
+
+.btn-antique:active {
+  transform: scale(0.95);
 }
 
 .btn-antique-active {
@@ -180,7 +194,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   background-color: transparent;
   color: var(--text-muted);
   border: 1px solid transparent;
@@ -191,12 +205,43 @@ body {
 .btn-pill:hover {
   background-color: var(--bg-card);
   color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.btn-pill:active {
+  transform: scale(0.95);
 }
 
 .btn-pill-active {
   background-color: var(--brand-primary) !important;
   color: #FFFFFF !important;
   box-shadow: 0 2px 8px rgba(139, 30, 15, 0.25);
+}
+
+/* Smooth Tab & Page Transition Animations */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in, .animate-slide-up {
+  animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+.click-bounce {
+  animation: scaleClick 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Slim Scrollbar */
@@ -217,13 +262,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--brand-accent);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease forwards;
 }
