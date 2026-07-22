@@ -144,14 +144,14 @@ export default function ThirukkuralQuiz({ dataset }) {
                   key={idx}
                   onClick={() => handleSelectOption(option)}
                   disabled={selectedOption !== null}
-                  className={`w-full text-left p-4 rounded-xl border text-sm sm:text-base font-bold transition-all flex items-center justify-between ${btnStyle}`}
+                  className={`w-full text-left p-3.5 sm:p-4 rounded-xl border text-xs sm:text-base font-bold transition-all flex items-center justify-between gap-2 min-w-0 ${btnStyle}`}
                 >
-                  <span>{option.text}</span>
+                  <span className="flex-1 min-w-0 break-words">{option.text}</span>
                   {selectedOption !== null && option.isCorrect && (
-                    <CheckCircle2 className="w-5 h-5 text-white" />
+                    <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
                   )}
                   {selectedOption !== null && selectedOption === option && !option.isCorrect && (
-                    <XCircle className="w-5 h-5 text-white" />
+                    <XCircle className="w-5 h-5 text-white shrink-0" />
                   )}
                 </button>
               );

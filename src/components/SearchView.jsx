@@ -109,38 +109,38 @@ export default function SearchView({
         </div>
 
         {/* Paal Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[var(--border-color)] text-xs">
-          <div className="flex items-center gap-1">
-            <span className="text-[var(--text-muted)] font-semibold mr-1 flex items-center gap-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[var(--border-color)] text-xs">
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 sm:pb-0 whitespace-nowrap">
+            <span className="text-[var(--text-muted)] font-semibold mr-1 flex items-center gap-1 shrink-0">
               <Filter className="w-3.5 h-3.5" /> பால்:
             </span>
             <button
               onClick={() => setSelectedPaal('ALL')}
-              className={`px-3 py-1 rounded-full transition-colors ${selectedPaal === 'ALL' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
+              className={`px-3 py-1 rounded-full transition-colors shrink-0 ${selectedPaal === 'ALL' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
             >
               அனைத்தும்
             </button>
             <button
               onClick={() => setSelectedPaal('அறத்துப்பால்')}
-              className={`px-3 py-1 rounded-full transition-colors ${selectedPaal === 'அறத்துப்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
+              className={`px-3 py-1 rounded-full transition-colors shrink-0 ${selectedPaal === 'அறத்துப்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
             >
               அறத்துப்பால்
             </button>
             <button
               onClick={() => setSelectedPaal('பொருட்பால்')}
-              className={`px-3 py-1 rounded-full transition-colors ${selectedPaal === 'பொருட்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
+              className={`px-3 py-1 rounded-full transition-colors shrink-0 ${selectedPaal === 'பொருட்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
             >
               பொருட்பால்
             </button>
             <button
               onClick={() => setSelectedPaal('இன்பத்துப்பால்')}
-              className={`px-3 py-1 rounded-full transition-colors ${selectedPaal === 'இன்பத்துப்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
+              className={`px-3 py-1 rounded-full transition-colors shrink-0 ${selectedPaal === 'இன்பத்துப்பால்' ? 'bg-[var(--brand-primary)] text-white font-bold' : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'}`}
             >
               இன்பத்துப்பால்
             </button>
           </div>
 
-          <span className="font-bold text-[var(--brand-primary)]">
+          <span className="font-bold text-[var(--brand-primary)] shrink-0 text-right sm:text-left">
             முடிவுகள்: {searchResults.length}
           </span>
         </div>

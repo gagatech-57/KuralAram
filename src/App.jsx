@@ -61,7 +61,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${theme} bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-400`}>
+    <div className={`min-h-screen ${theme} bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-400 overflow-x-hidden w-full max-w-full`}>
       
       {/* Top Scroll Progress Bar */}
       <div 

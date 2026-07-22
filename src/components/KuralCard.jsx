@@ -50,23 +50,23 @@ export default function KuralCard({
   };
 
   return (
-    <article className="card-modern p-4 sm:p-6 lg:p-8 space-y-5 my-4 sm:my-6 transition-all duration-300 w-full min-w-0">
+    <article className="card-modern p-3.5 sm:p-6 lg:p-8 space-y-4 sm:space-y-5 my-3 sm:my-6 transition-all duration-300 w-full min-w-0 overflow-hidden">
       
       {/* Top Bar: Kural Number Badge & Quick Actions */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-1.5 flex-wrap sm:flex-nowrap">
         
         {/* Kural Badge & Chapter Info */}
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-1.5 min-w-0 shrink">
           <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[var(--brand-primary-light)] text-[var(--brand-primary)] font-inter shrink-0">
             குறள் {kural.number}
           </span>
-          <span className="text-xs font-medium text-[var(--text-muted)] font-inter truncate max-w-[200px] sm:max-w-xs">
+          <span className="text-xs font-medium text-[var(--text-muted)] font-inter truncate max-w-[140px] sm:max-w-xs">
             {kural.paalTa} • {kural.chapterTa}
           </span>
         </div>
 
         {/* Action Controls: Touch Friendly min 44px targets */}
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-0.5 sm:gap-1 shrink-0 ml-auto">
           
           {/* Audio TTS Button */}
           <button
@@ -84,7 +84,7 @@ export default function KuralCard({
           {/* English Audio */}
           <button
             onClick={() => handleSpeak('en')}
-            className="touch-target px-2.5 py-1 rounded-xl text-xs font-bold font-inter text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)] transition-colors"
+            className="touch-target px-2 py-1 rounded-xl text-xs font-bold font-inter text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)] transition-colors"
             title="English Audio Speech"
           >
             EN 🔊
@@ -122,13 +122,13 @@ export default function KuralCard({
         <div className="inline-block text-left font-tamil-serif font-bold text-[var(--brand-primary)] tracking-tight max-w-full">
           <h2 
             className="fluid-kural-text leading-relaxed break-words"
-            style={{ fontSize: `calc(clamp(1.1rem, 3.5vw, 1.85rem) * ${fontSizeMultiplier})` }}
+            style={{ fontSize: `calc(clamp(1.05rem, 3.5vw, 1.85rem) * ${fontSizeMultiplier})` }}
           >
             {kural.line1}
           </h2>
           <h2 
             className="fluid-kural-text leading-relaxed break-words"
-            style={{ fontSize: `calc(clamp(1.1rem, 3.5vw, 1.85rem) * ${fontSizeMultiplier})` }}
+            style={{ fontSize: `calc(clamp(1.05rem, 3.5vw, 1.85rem) * ${fontSizeMultiplier})` }}
           >
             {kural.line2}
           </h2>
@@ -144,11 +144,11 @@ export default function KuralCard({
       </div>
 
       {/* Tamil Explanation Tabs & Content */}
-      <div className="space-y-3 pt-2">
-        <div className="flex flex-wrap items-center gap-1 border-b border-[var(--border-color)] pb-2 text-xs font-inter">
+      <div className="space-y-3 pt-1">
+        <div className="flex items-center gap-1 border-b border-[var(--border-color)] pb-2 text-xs font-inter overflow-x-auto no-scrollbar whitespace-nowrap">
           <button
             onClick={() => setActiveTab('muva')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] ${
+            className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] shrink-0 ${
               activeTab === 'muva' 
                 ? 'bg-[var(--brand-primary)] text-white font-bold' 
                 : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'
@@ -159,7 +159,7 @@ export default function KuralCard({
 
           <button
             onClick={() => setActiveTab('sp')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] ${
+            className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] shrink-0 ${
               activeTab === 'sp' 
                 ? 'bg-[var(--brand-primary)] text-white font-bold' 
                 : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'
@@ -171,7 +171,7 @@ export default function KuralCard({
           {kural.explanationKalaignar && (
             <button
               onClick={() => setActiveTab('mk')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] ${
+              className={`px-3 py-1.5 rounded-lg transition-colors font-medium min-h-[36px] shrink-0 ${
                 activeTab === 'mk' 
                   ? 'bg-[var(--brand-primary)] text-white font-bold' 
                   : 'text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'
